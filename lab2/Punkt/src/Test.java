@@ -79,6 +79,7 @@ public class Test {
     }
 
     private static void WyswietlMenu() {
+        System.out.println("============================");
         System.out.println("Co chcesz zrobić?");
         System.out.println("1. Wczytaj punkt 3D");
         System.out.println("2. Wyświetl wszystkie punkty");
