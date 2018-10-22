@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="mailactivation">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/Pobrane/mailactivation.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Pobrane/mailactivation.zip!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/Pobrane/mailactivation.zip!/" />
+    </JAVADOC>
+    <NATIVE>
+      <root url="jar://$USER_HOME$/Pobrane/mailactivation.zip!/" />
+    </NATIVE>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Pobrane/mailactivation.zip!/" />
+    </SOURCES>
+    <jarDirectory url="jar://$USER_HOME$/Pobrane/mailactivation.zip!/" recursive="false" />
+    <jarDirectory url="jar://$USER_HOME$/Pobrane/mailactivation.zip!/" recursive="false" type="SOURCES" />
+  </library>
+</component>
