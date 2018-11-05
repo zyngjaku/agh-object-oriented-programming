@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pl.edu.agh.kis.java2015.domain.HeapTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-11-05T10:43:38" hostname="ZyngiPC" time="0.002">
+  <properties/>
+  <testcase name="insert0AndThen2intoNewHeap_topIs2" classname="pl.edu.agh.kis.java2015.domain.HeapTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

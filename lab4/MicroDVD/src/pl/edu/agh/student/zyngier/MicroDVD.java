@@ -33,17 +33,44 @@ public class MicroDVD {
                             tmp+=get_line.charAt(j);
                         }
 
-                        if(!start && tmp.){
-                            time_start = Integer.valueOf(tmp);
+                        if(tmp!=""){
+                            if(isInteger(tmp)) {
+                            	if(!start) {
+                            		time_start = Integer.valueOf(tmp);
+                            		start=true;
+                            	}
+                            	else if(!end) {
+                            		time_end = Integer.valueOf(tmp);
+                            		end=true;
+
+                            		if(time_end<time_start)
+                                    	throw new BadFormatException(get_line);
+                            	}
+                            }
+                            else {
+                            	throw new BadFormatException(get_line);
+                            }
+
+                            start = true;
+                            
                         }
-                        else if(!end){
-                            time_end = Integer.valueOf(tmp);
+                        else{
+                        	throw new BadFormatException(get_line);
                         }
 
-                        //double mspf = 1000 / (double)45;
-                        //int przesuniecie = (int)(delay/mspf);
 
-
+                    }
+                    else {
+                    	while(i<get_line.length()) {
+                            tmp+=get_line.charAt(i);
+                            i++;
+                    	}
+                    	
+                    	double mspf = 1000 / (double)45;
+                        int przesuniecie = (int)(delay/mspf);
+                    	
+                    	System.out.println("{"+(time_start+przesuniecie)+"}{"+(time_end+przesuniecie)+"}"+tmp);    	
+                    	
                     }
 
                 }
@@ -54,6 +81,15 @@ public class MicroDVD {
             e.printStackTrace();
         }
 
+    }
+    
+    public static boolean isInteger(String checking_string) {
+    	for(int i=0; i<checking_string.length(); i++) {
+        	if((int)checking_string.charAt(i)<48 || (int)checking_string.charAt(i)>57)
+        		return false;
+        }
+		
+    	return true;
     }
 
 }
