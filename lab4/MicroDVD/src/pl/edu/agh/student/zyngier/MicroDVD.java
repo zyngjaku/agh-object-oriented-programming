@@ -2,6 +2,9 @@ package pl.edu.agh.student.zyngier;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Scanner;
 
 public class MicroDVD {
@@ -9,9 +12,11 @@ public class MicroDVD {
     public static void delay(String input, String output, int delay, int fps) throws BadFormatException{
         File file = new File(input);
         Scanner scanner = null;
+        Writer write_to_file = null;
 
         try {
             scanner = new Scanner(file);
+			write_to_file = new FileWriter(output);
 
             while (scanner.hasNextLine()) {
                 String get_line = scanner.nextLine();
@@ -69,17 +74,22 @@ public class MicroDVD {
                     	double mspf = 1000 / (double)45;
                         int przesuniecie = (int)(delay/mspf);
                     	
-                    	System.out.println("{"+(time_start+przesuniecie)+"}{"+(time_end+przesuniecie)+"}"+tmp);    	
-                    	
+						write_to_file.write("{"+(time_start+przesuniecie)+"}{"+(time_end+przesuniecie)+"}"+tmp);
+					
                     }
 
                 }
 
             }
+            
+            write_to_file.flush();
+            write_to_file.close();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
+        } catch (IOException e) {
+			e.printStackTrace();
+		}
 
     }
     
