@@ -1,5 +1,4 @@
 {123}{125} Bla bla bla
-{234}{2345f} zly znak
+{234}{235} zly znak
 {252}{255} cos tu ktos mowi
-{452}{321} Bla bla bla
-{452}{} hehe blad
+{452}{453} Bla bla bla

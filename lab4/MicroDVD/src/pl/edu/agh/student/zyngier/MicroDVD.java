@@ -1,22 +1,21 @@
 package pl.edu.agh.student.zyngier;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.util.Scanner;
 
 public class MicroDVD {
 
     public static void delay(String input, String output, int delay, int fps) throws BadFormatException{
-        File file = new File(input);
+        File file_in = new File(input);
         Scanner scanner = null;
-        Writer write_to_file = null;
+
+        File file_out = new File(output);
 
         try {
-            scanner = new Scanner(file);
-			write_to_file = new FileWriter(output);
+            scanner = new Scanner(file_in);
+
+            FileOutputStream fos = new FileOutputStream(file_out);
+            BufferedWriter write_to_file = new BufferedWriter(new OutputStreamWriter(fos));
 
             while (scanner.hasNextLine()) {
                 String get_line = scanner.nextLine();
@@ -41,11 +40,11 @@ public class MicroDVD {
                         if(tmp!=""){
                             if(isInteger(tmp)) {
                             	if(!start) {
-                            		time_start = Integer.valueOf(tmp);
+                            	    time_start = Integer.valueOf(tmp);
                             		start=true;
                             	}
                             	else if(!end) {
-                            		time_end = Integer.valueOf(tmp);
+                                    time_end = Integer.valueOf(tmp);
                             		end=true;
 
                             		if(time_end<time_start)
@@ -75,7 +74,7 @@ public class MicroDVD {
                         int przesuniecie = (int)(delay/mspf);
                     	
 						write_to_file.write("{"+(time_start+przesuniecie)+"}{"+(time_end+przesuniecie)+"}"+tmp);
-					
+                        write_to_file.newLine();
                     }
 
                 }
