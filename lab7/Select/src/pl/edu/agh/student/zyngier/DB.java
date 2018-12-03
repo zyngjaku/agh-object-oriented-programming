@@ -14,11 +14,15 @@ public class DB{
       Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
       conn = DriverManager.getConnection("jdbc:mysql://mysql.agh.edu.pl/zyngier1", "zyngier1","4FcqT2V60H3hSVEJ");
     } catch (SQLException ex) {
-      // handle any errors
       System.out.println("SQLException: " + ex.getMessage());
       System.out.println("SQLState: " + ex.getSQLState());
       System.out.println("VendorError: " + ex.getErrorCode());
     }catch(Exception e){e.printStackTrace();}
+  }
+
+  public boolean isConnect(){
+    if(conn!=null) return true;
+    else return false;
   }
 
   public void getBooks(){
@@ -31,28 +35,84 @@ public class DB{
       System.out.println("isbn;title;author;year");
 
       while(rs.next()){
-        String id = rs.getString(1);
-        //System.out.println(rs.getString(1) + ";" + String.format("%1$"+rs.getString(2).length()+ "s", rs.getString(2)) + ";" + rs.getString(3) + ";" + rs.getString(4));
-        System.out.println(StringUtils.leftPad("test", 20, "*"));
+        System.out.println(rs.getString(1) + ";" + rs.getString(2) + ";" + rs.getString(3) + ";" + rs.getString(4));
       }
-      }catch (SQLException ex){
-        // handle any errors
+    }catch (SQLException ex){
 
-      }finally {
-        if (rs != null) {
-          try {
-            rs.close();
-          } catch (SQLException sqlEx) { } // ignore
-          rs = null;
-        }
-
-        if (stmt != null) {
-          try {
-            stmt.close();
-          } catch (SQLException sqlEx) { } // ignore
-
-          stmt = null;
-        }
+    }finally {
+      if (rs != null) {
+        try {
+          rs.close();
+        } catch (SQLException sqlEx) { } // ignore
+        rs = null;
       }
+
+      if (stmt != null) {
+        try {
+          stmt.close();
+        } catch (SQLException sqlEx) { } // ignore
+
+        stmt = null;
+      }
+    }
+  }
+
+  public void searchBooks(String element, String value){
+    try {
+      connect();
+      stmt = conn.createStatement();
+
+      rs = stmt.executeQuery("SELECT * FROM books WHERE " + element +" LIKE '%"+value+"%';");
+
+      System.out.println("isbn;title;author;year");
+
+      while(rs.next()){
+        System.out.println(rs.getString(1) + ";" + rs.getString(2) + ";" + rs.getString(3) + ";" + rs.getString(4));
+      }
+    }catch (SQLException ex){
+
+    }finally {
+      if (rs != null) {
+        try {
+          rs.close();
+        } catch (SQLException sqlEx) { } // ignore
+        rs = null;
+      }
+
+      if (stmt != null) {
+        try {
+          stmt.close();
+        } catch (SQLException sqlEx) { } // ignore
+
+        stmt = null;
+      }
+    }
+  }
+
+  public void addBook(String isbn, String title, String author, String year){
+    try {
+      connect();
+      stmt = conn.createStatement();
+
+      stmt.executeUpdate("INSERT INTO books VALUES ('" + isbn + "','" + title + "','" + author + "',"+ year +")\n");
+    }catch (SQLException ex){
+      // handle any errors
+
+    }finally {
+      if (rs != null) {
+        try {
+          rs.close();
+        } catch (SQLException sqlEx) { } // ignore
+        rs = null;
+      }
+
+      if (stmt != null) {
+        try {
+          stmt.close();
+        } catch (SQLException sqlEx) { } // ignore
+
+        stmt = null;
+      }
+    }
   }
 }
