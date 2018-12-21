@@ -50,7 +50,7 @@ public class Main extends Application {
 
         xAxis.setLabel("x");
         xAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList(specialities)));
-        
+
         yAxis.setLabel("y");
 
         final XYChart.Series<String,Number> series1 = new XYChart.Series<String,Number>();
